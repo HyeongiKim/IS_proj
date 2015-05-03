@@ -3,20 +3,6 @@
 ## Name	Kim Hyeongi	##
 ######################
 
-# Decimal number -> Binary number
-def binary_trans(a,n):
-	for i in range(n,-1,-1):
-		if(i>=0):
-			print("%d" % ((a>>i)&1)),
-	return;
-
-# Bit -> count how many different bits in 'bit'
-def bitcount(bit):
-	count = 0
-	for i in range(6):
-		if(((bit>>i)&1) == 1):
-			count+=1
-	return count;
 # Parity check.
 def parity(bit):
 	sum_bit = 0
@@ -24,6 +10,7 @@ def parity(bit):
 		sum_bit += (bit>>i)&1
 	ans = sum_bit%2
 	return ans;
+
 # num -> S5(num)
 def sbox(num):
 	table =[[2, 12, 4, 1, 7, 10, 11, 6, 8, 5, 3, 15, 13, 0, 14, 9],
@@ -35,20 +22,29 @@ def sbox(num):
 	column = ((num&30)>>1);
 
 	return table[row][column];
-# a,b -> NS5(a,b), NS5(a,b) = #{x|0<=x<64, parity(x&a)=parity(S(x)*b)};
+
+# a,b -> NS5(a,b), 
+# NS5(a,b) = #{x|0<=x<64, parity(x&a)=parity(S(x)*b)}
 def ldt(a,b):
 	count = 0
 	for x in range(64):
 		if (parity(x&a) == parity(sbox(x)&b)):
 			count+=1
-	return count;
-# Check all cases about 0~63
-def check_bit():
-	print ldt(16,15)
-#		print (" x*a "),
-#		binary_trans(i&16,6)
-#		print (" S(x)*b "),
-#		binary_trans(sbox_prop(i)&15,6)
-#		print "\n"
-	return
-check_bit();
+	return count-32;
+
+# Check all cases about 0<a<64, 0<b<16.
+def main():
+	for a in range(0,64):
+		if(a==0):
+			print " "*7,
+		else:
+		 	print ("   %3d|" % a),
+		for b in range(1,16):
+			if(a==0):
+				print ("   %3d" % b),
+			else:
+			 	print ("   %3d" % ldt(a,b)),
+		print ""
+	return;
+
+main()
