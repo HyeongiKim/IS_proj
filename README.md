@@ -5,7 +5,9 @@ semester: spring 2015
 
 # Project
 
-1. *DES S-box Property
+1. DES S-box Property
 
-2. *AES-128
+2. AES-128
+
+3. Linear Distribution Table of S5-box (Linear Cryptanalysis)
 	
