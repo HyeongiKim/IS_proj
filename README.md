@@ -12,3 +12,5 @@ semester: spring 2015
 3. Linear Distribution Table of S5-box (Linear Cryptanalysis)
 
 4. RSA Public Key Cryptosystem
+
+5. Shanks' algorithm
